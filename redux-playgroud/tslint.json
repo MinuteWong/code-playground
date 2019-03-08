@@ -9,7 +9,7 @@
         "interface-name": true,
         "jsdoc-format": true,
         "no-consecutive-blank-lines" : true,
-        "no-debugger": true,
+        "no-console": false,
         "no-duplicate-key": true,
         "no-duplicate-variable": true,
         "no-eval": true,
