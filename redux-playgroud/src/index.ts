@@ -1,4 +1,5 @@
-import { Reducer, Middleware, createStore, applyMiddleware } from "redux";
+import { Reducer, Middleware } from 'redux';
+import { createStore, applyMiddleware } from './reduxSource';
 // import {
 //   createStore,
 //   combineReducers,
@@ -23,7 +24,7 @@ const initialState: any = {
 
 const todoApp: Reducer = (state = initialState, action) => {
   switch (action.type) {
-    case "UPDATE_MENU":
+    case 'UPDATE_MENU':
       return Object.assign({}, state, {
         menuList: action.data
       });
@@ -31,24 +32,26 @@ const todoApp: Reducer = (state = initialState, action) => {
 };
 
 const commonMiddleWare: Middleware = ({ getState, dispatch }) => next => {
-  console.log("2", next);
+  console.log('2', dispatch);
+
   return action => {
-    console.log("1", dispatch);
+    console.log('1', dispatch);
     next(action);
   };
 };
 
 const commonMiddleWare2: Middleware = ({ getState, dispatch }) => next => {
-  console.log("4", next);
   return action => {
-    console.log("5", dispatch);
     next(action);
   };
 };
 
-const store = createStore(todoApp, applyMiddleware(commonMiddleWare, commonMiddleWare2));
+const store = createStore(
+  todoApp,
+  applyMiddleware(commonMiddleWare, commonMiddleWare2)
+);
 
 store.dispatch({
-  type: "UPDATE_MENU",
+  type: 'UPDATE_MENU',
   data: [{ key: 1 }]
 });
